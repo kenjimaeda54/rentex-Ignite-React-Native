@@ -1,5 +1,4 @@
 import React from 'react';
-import { HomeScreen } from './src/screen/home';
 import { ThemeProvider } from 'styled-components';
 import AppLoading from 'expo-app-loading';
 import theme from './src/global/theme';
@@ -13,6 +12,7 @@ import {
   Archivo_400Regular,
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
+import { CarDetails } from './src/screen/car-details/indext';
 
 export default function App(): JSX.Element {
   const [isLoading] = useFonts({
@@ -29,7 +29,7 @@ export default function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <HomeScreen />
+      <CarDetails />
     </ThemeProvider>
   );
 }

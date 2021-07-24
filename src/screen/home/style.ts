@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { FlatList } from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -28,3 +29,5 @@ export const Title = styled.Text`
   line-height: ${RFValue(19)}px;
   font-size: ${RFValue(15)}px;
 `;
+
+export const CarList = styled(FlatList)``;
