@@ -12,7 +12,7 @@ import {
   Archivo_400Regular,
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
-import { CarDetails } from './src/screen/car-details/indext';
+import { Scheduling } from './src/screen/scheduling';
 
 export default function App(): JSX.Element {
   const [isLoading] = useFonts({
@@ -29,7 +29,7 @@ export default function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <CarDetails />
+      <Scheduling />
     </ThemeProvider>
   );
 }
