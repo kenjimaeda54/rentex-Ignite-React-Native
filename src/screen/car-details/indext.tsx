@@ -2,7 +2,31 @@ import React from 'react';
 import { BackButton } from '../../components/back-button';
 import { CarSlider } from '../../components/car-slider';
 import { ViewSlider } from '../../components/view-slider';
-import { Container, Header, CardSliderImg } from './style';
+import gasoline from '../../assets/gasoline.svg';
+import people from '../../assets/people.svg';
+import force from '../../assets/force.svg';
+import acceleration from '../../assets/acceleration.svg';
+import exchange from '../../assets/exchange.svg';
+import speed from '../../assets/speed.svg';
+import { Accessory } from '../../components/accessory';
+import { Button } from '../../components/button';
+
+import {
+  Container,
+  Header,
+  CardSliderImg,
+  Content,
+  ViewCarDetails,
+  ViewDetails,
+  BrandText,
+  ModelText,
+  ViewRente,
+  DayText,
+  PriceText,
+  AboutText,
+  Accessories,
+  Footer,
+} from './style';
 
 export function CarDetails(): JSX.Element {
   return (
@@ -18,6 +42,40 @@ export function CarDetails(): JSX.Element {
           ]}
         />
       </CardSliderImg>
+      <Content
+        contentContainerStyle={{ paddingHorizontal: 24, alignItems: 'center' }}
+        showsVerticalScrollIndicator={false}
+      >
+        <ViewCarDetails>
+          <ViewDetails>
+            <BrandText>Lamborghini</BrandText>
+            <ModelText>Huracan</ModelText>
+          </ViewDetails>
+          <ViewRente>
+            <DayText>Ao dia</DayText>
+            <PriceText>R$ 580</PriceText>
+          </ViewRente>
+        </ViewCarDetails>
+        <Accessories>
+          <Accessory icon={speed} name="380km/h" />
+          <Accessory icon={acceleration} name="3.2s" />
+          <Accessory icon={force} name="800 HP" />
+          <Accessory icon={gasoline} name="Gasolina" />
+          <Accessory icon={exchange} name="Auto" />
+          <Accessory icon={people} name="2 pessoas" />
+        </Accessories>
+        <AboutText>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
+          para quem gosta de acelerar.
+        </AboutText>
+      </Content>
+      {/*content e uma scroll view caso o botão esteja la dentro,
+      vai acompanhar o scroll,melhor maneira de resolver isso e colocar
+      botão fora, assim sempre vai ficar visível */}
+      <Footer>
+        <Button description="Escolha período do aluguel" />
+      </Footer>
     </Container>
   );
 }
