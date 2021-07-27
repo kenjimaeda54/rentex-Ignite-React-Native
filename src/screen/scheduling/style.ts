@@ -75,10 +75,14 @@ export const TextDate = styled.Text<TextDateProps>`
 
 export const Content = styled.ScrollView.attrs({
   contentContainerStyle: {
-    paddingBottom: getBottomSpace() + 24,
     alignItems: 'center',
   },
-})``;
+})`
+  margin-top: 33px;
+  padding: 0 25px;
+  width: 100%;
+  flex: 1;
+`;
 
 export const Footer = styled.View`
   padding: 0 ${getBottomSpace() + 24}px;

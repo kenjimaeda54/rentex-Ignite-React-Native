@@ -3,6 +3,8 @@ import { BackButton } from '../../components/back-button';
 import { useTheme } from 'styled-components/native';
 import { Button } from '../../components/button';
 import { StatusBar } from 'react-native';
+import { CustomCalendar } from '../../components/custom-calendars';
+import Arrow from '../../assets/arrow.svg';
 import {
   Container,
   Header,
@@ -15,7 +17,6 @@ import {
   Content,
   Footer,
 } from './style';
-import Arrow from '../../assets/arrow.svg';
 
 export function Scheduling(): JSX.Element {
   const { colors } = useTheme();
@@ -47,7 +48,9 @@ export function Scheduling(): JSX.Element {
           </ViewDateSelected>
         </ViewContainerDate>
       </Header>
-      <Content></Content>
+      <Content>
+        <CustomCalendar />
+      </Content>
       <Footer>
         <Button description="Confirmar" />
       </Footer>
