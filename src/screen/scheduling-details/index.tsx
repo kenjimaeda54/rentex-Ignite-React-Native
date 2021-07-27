@@ -32,6 +32,11 @@ import {
   TextTitle,
   ViewDate,
   TextDate,
+  ViewTotal,
+  TitleTotal,
+  ViewPrice,
+  PriceTextTotal,
+  PriceTotalText,
 } from './style';
 
 export function SchedulingDetails(): JSX.Element {
@@ -89,9 +94,16 @@ export function SchedulingDetails(): JSX.Element {
             <TextDate>20/06/2021</TextDate>
           </ViewDate>
         </ViewRetail>
+        <ViewTotal>
+          <TitleTotal>Total</TitleTotal>
+          <ViewPrice>
+            <PriceTextTotal>R$ 580 x3 diárias</PriceTextTotal>
+            <PriceTotalText>R$ 2.900</PriceTotalText>
+          </ViewPrice>
+        </ViewTotal>
       </Content>
       <Footer>
-        <Button description="Escolha período do aluguel" />
+        <Button description="Alugar agora" color={colors.success} />
       </Footer>
     </Container>
   );

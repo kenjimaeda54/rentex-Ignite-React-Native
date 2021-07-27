@@ -13,7 +13,7 @@ import {
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
 
-import { SchedulingDetails } from './src/screen/scheduling-details';
+import SchedulingComplete from './src/screen/scheduling-complete';
 
 export default function App(): JSX.Element {
   const [isLoading] = useFonts({
@@ -30,7 +30,7 @@ export default function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedulingDetails />
+      <SchedulingComplete />
     </ThemeProvider>
   );
 }

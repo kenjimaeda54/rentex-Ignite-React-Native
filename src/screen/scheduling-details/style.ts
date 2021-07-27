@@ -87,7 +87,7 @@ export const Accessories = styled.View`
 `;
 
 export const Footer = styled.View`
-  background-color: ${({ theme }) => theme.colors.background_secondary};
+  background-color: ${({ theme }) => theme.colors.background_primary};
   width: 100%;
   padding: 31px 24px ${getBottomSpace() + 31}px;
 `;
@@ -126,6 +126,47 @@ export const TextDate = styled.Text`
   font-size: ${RFValue(15)}px;
   line-height: ${RFValue(18)}px;
   letter-spacing: 2px;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.title};
   margin-left: -3px;
+`;
+
+export const ViewTotal = styled.View`
+  width: 100%;
+  margin: 16px 0px 38px;
+  justify-content: center;
+`;
+
+export const TitleTotal = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.archivo_500};
+  font-size: ${RFValue(10)}px;
+  line-height: ${RFValue(11)}px;
+  letter-spacing: 2px;
+  color: ${({ theme }) => theme.colors.text_detail};
+  text-transform: uppercase;
+  font-weight: 500;
+`;
+
+export const ViewPrice = styled.View`
+  flex-direction: row;
+  width: 100%;
+  margin-top: 8px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const PriceTextTotal = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.inter_500};
+  font-size: ${RFValue(15)}px;
+  line-height: ${RFValue(18)}px;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: 500;
+`;
+
+export const PriceTotalText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.archivo_500};
+  font-size: ${RFValue(24)}px;
+  line-height: ${RFValue(26)}px;
+  color: ${({ theme }) => theme.colors.success};
+  font-weight: 500;
 `;
