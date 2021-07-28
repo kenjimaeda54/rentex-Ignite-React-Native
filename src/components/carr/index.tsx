@@ -1,6 +1,7 @@
 import React from 'react';
-import Gasoline from '../../assets/gasoline.svg';
+import { RectButtonProps } from 'react-native-gesture-handler';
 import { Dots } from '../../components/dots';
+import { getIcons } from '../../utils/get-icon';
 import {
   Container,
   Details,
@@ -14,23 +15,24 @@ import {
   PhotoCar,
 } from './style';
 
-interface CarrProps {
+interface CarrProps extends RectButtonProps {
   data: Dots;
 }
 
-export function Carr({ data }: CarrProps): JSX.Element {
+export function Carr({ data, ...rest }: CarrProps): JSX.Element {
+  const Icon = getIcons(data.fuel_type);
   return (
-    <Container>
+    <Container {...rest}>
       <Details>
         <TextBrandCar>d{data.brand}</TextBrandCar>
         <TextModelCar> {data.name} </TextModelCar>
         <ViewDiary>
           <ContentDiary>
             <TextDay> {data.rent.period} </TextDay>
-            <TextPrice> {data.rent.price} </TextPrice>
+            <TextPrice> R$ {data.rent.price} </TextPrice>
           </ContentDiary>
           <Type>
-            <Gasoline />
+            <Icon />
           </Type>
         </ViewDiary>
       </Details>

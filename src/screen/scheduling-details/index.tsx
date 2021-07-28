@@ -6,13 +6,13 @@ import { Accessory } from '../../components/accessory';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { Button } from '../../components/button';
+import { useNavigation } from '@react-navigation/native';
 import gasoline from '../../assets/gasoline.svg';
 import people from '../../assets/people.svg';
 import force from '../../assets/force.svg';
 import acceleration from '../../assets/acceleration.svg';
 import exchange from '../../assets/exchange.svg';
 import speed from '../../assets/speed.svg';
-
 import {
   Container,
   Header,
@@ -41,6 +41,11 @@ import {
 
 export function SchedulingDetails(): JSX.Element {
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
+  function handleSchedulingComplete() {
+    navigation.navigate('SchedulingComplete');
+  }
   return (
     <Container>
       <Header>
@@ -103,7 +108,11 @@ export function SchedulingDetails(): JSX.Element {
         </ViewTotal>
       </Content>
       <Footer>
-        <Button description="Alugar agora" color={colors.success} />
+        <Button
+          description="Alugar agora"
+          color={colors.success}
+          onPress={handleSchedulingComplete}
+        />
       </Footer>
     </Container>
   );

@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components/native';
 import { Button } from '../../components/button';
 import { StatusBar } from 'react-native';
 import { CustomCalendar } from '../../components/custom-calendars';
+import { useNavigation } from '@react-navigation/native';
 import Arrow from '../../assets/arrow.svg';
 import {
   Container,
@@ -20,6 +21,11 @@ import {
 
 export function Scheduling(): JSX.Element {
   const { colors } = useTheme();
+  const navigation = useNavigation();
+
+  function handleSchedulingDetails() {
+    navigation.navigate('SchedulingDetails');
+  }
   return (
     <Container>
       <StatusBar
@@ -52,7 +58,7 @@ export function Scheduling(): JSX.Element {
         <CustomCalendar />
       </Content>
       <Footer>
-        <Button description="Confirmar" />
+        <Button description="Confirmar" onPress={handleSchedulingDetails} />
       </Footer>
     </Container>
   );

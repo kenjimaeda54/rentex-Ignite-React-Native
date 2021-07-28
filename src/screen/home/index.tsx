@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Container, Header, HeaderContent, Title, CarList } from './style';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import Logo from '../../assets/logo.svg';
 import { Carr } from '../../components/carr';
@@ -10,6 +11,7 @@ import { Dots } from '../../components/dots';
 import { Loading } from '../../components/loading';
 
 export function HomeScreen(): JSX.Element {
+  const navigation = useNavigation();
   const [fetchCars, setFetchCars] = useState<Dots[]>([]);
   const [loading, setLoading] = useState(true);
   async function fetchApi() {
@@ -25,6 +27,10 @@ export function HomeScreen(): JSX.Element {
   useEffect(() => {
     fetchApi();
   }, []);
+
+  function handleCarDetails(car: Dots) {
+    navigation.navigate('CarDetails', { car });
+  }
 
   return (
     <Container>
@@ -46,7 +52,9 @@ export function HomeScreen(): JSX.Element {
           data={fetchCars}
           keyExtractor={(item) => item.id}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          renderItem={({ item }) => <Carr data={item} />}
+          renderItem={({ item }) => (
+            <Carr onPress={() => handleCarDetails(item)} data={item} />
+          )}
         />
       )}
     </Container>

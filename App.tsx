@@ -1,7 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { HomeScreen } from './src/screen/home';
+import { Routes } from './src/routes/index.routes';
 import AppLoading from 'expo-app-loading';
+import 'react-native-gesture-handler';
 import theme from './src/global/theme';
 import {
   Inter_400Regular,
@@ -29,7 +30,7 @@ export default function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <HomeScreen />
+      <Routes />
     </ThemeProvider>
   );
 }

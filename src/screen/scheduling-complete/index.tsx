@@ -1,5 +1,7 @@
 import React from 'react';
 import { useWindowDimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ButtonConfirm from '../../components/button-confirm';
 import Logo from '../../assets/logo_background_gray.svg';
 import Done from '../../assets/done.svg';
 import {
@@ -10,13 +12,17 @@ import {
   ViewIconDone,
   Footer,
 } from './style';
-import ButtonConfirm from '../../components/button-confirm';
 
-export default function SchedulingComplete(): JSX.Element {
+export function SchedulingComplete(): JSX.Element {
   const { width } = useWindowDimensions();
   //em  componente funcional precisa ser o Dimensions ao invés do hook useWindowDDimensions, por exemplo
   //no styled componente. Com useDimensions pego exatamente a proporção do dispositivo
   //que esta sendo usado
+  const navigation = useNavigation();
+
+  function handleHomeScreen() {
+    navigation.navigate('HomeScreen');
+  }
   return (
     <Container>
       <Logo width={width} />
@@ -32,7 +38,7 @@ export default function SchedulingComplete(): JSX.Element {
         </DescriptionText>
       </Content>
       <Footer>
-        <ButtonConfirm title="Ok" />
+        <ButtonConfirm title="Ok" onPress={handleHomeScreen} />
       </Footer>
     </Container>
   );

@@ -4,7 +4,7 @@ import { Container, NameText } from './style';
 
 interface AccessoryProps {
   name: string;
-  icon: React.FC<SvgProps>;
+  icon: string | React.FC<SvgProps>;
 }
 
 export function Accessory({ name, icon: Icon }: AccessoryProps): JSX.Element {
