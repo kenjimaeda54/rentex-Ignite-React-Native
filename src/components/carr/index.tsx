@@ -1,5 +1,6 @@
 import React from 'react';
 import Gasoline from '../../assets/gasoline.svg';
+import { Dots } from '../../components/dots';
 import {
   Container,
   Details,
@@ -13,29 +14,19 @@ import {
   PhotoCar,
 } from './style';
 
-interface DataProps {
-  brandCar: string;
-  modelCar: string;
-  rent: {
-    day: string;
-    price: string;
-  };
-  thumbnail: string;
-}
-
 interface CarrProps {
-  data: DataProps;
+  data: Dots;
 }
 
 export function Carr({ data }: CarrProps): JSX.Element {
   return (
     <Container>
       <Details>
-        <TextBrandCar>d{data.brandCar}</TextBrandCar>
-        <TextModelCar> {data.modelCar} </TextModelCar>
+        <TextBrandCar>d{data.brand}</TextBrandCar>
+        <TextModelCar> {data.name} </TextModelCar>
         <ViewDiary>
           <ContentDiary>
-            <TextDay> {data.rent.day} </TextDay>
+            <TextDay> {data.rent.period} </TextDay>
             <TextPrice> {data.rent.price} </TextPrice>
           </ContentDiary>
           <Type>

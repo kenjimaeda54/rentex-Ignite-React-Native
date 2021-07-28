@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { HomeScreen } from './src/screen/home';
 import AppLoading from 'expo-app-loading';
 import theme from './src/global/theme';
 import {
@@ -12,8 +13,6 @@ import {
   Archivo_400Regular,
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
-
-import SchedulingComplete from './src/screen/scheduling-complete';
 
 export default function App(): JSX.Element {
   const [isLoading] = useFonts({
@@ -30,7 +29,7 @@ export default function App(): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedulingComplete />
+      <HomeScreen />
     </ThemeProvider>
   );
 }

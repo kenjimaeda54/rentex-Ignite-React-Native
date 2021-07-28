@@ -1,22 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Container, Header, HeaderContent, Title, CarList } from './style';
 import { StatusBar } from 'react-native';
 import Logo from '../../assets/logo.svg';
 import { Carr } from '../../components/carr';
+import { api } from '../../services';
+import { Dots } from '../../components/dots';
+import { Loading } from '../../components/loading';
 
 export function HomeScreen(): JSX.Element {
-  const dataCar = {
-    brandCar: 'Audi',
-    modelCar: 'RS 5 Coupé',
-    rent: {
-      day: 'Ao dia',
-      price: 'R$ 120',
-    },
-    thumbnail:
-      'https://img1.gratispng.com/20180926/iqw/kisspng-2-18-audi-rs-5-car-audi-s5-audi-a5-audi-leasen-total-car-lease-5bac3bbe1e3f94.5714384315380141421239.jpg',
-  };
+  const [fetchCars, setFetchCars] = useState<Dots[]>([]);
+  const [loading, setLoading] = useState(true);
+  async function fetchApi() {
+    try {
+      const response = await api.get('/cars');
+      setFetchCars(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchApi();
+  }, []);
 
   return (
     <Container>
@@ -31,13 +39,16 @@ export function HomeScreen(): JSX.Element {
           <Title>Total de 12 carros</Title>
         </HeaderContent>
       </Header>
-      <CarList
-        data={[1, 2, 3, 4, 6, 7, 8, 9]}
-        keyExtractor={(item) => String(item)}
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        renderItem={({ item }) => <Carr data={dataCar} />}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 21 }}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <CarList
+          data={fetchCars}
+          keyExtractor={(item) => item.id}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          renderItem={({ item }) => <Carr data={item} />}
+        />
+      )}
     </Container>
   );
 }

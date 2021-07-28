@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { FlatList } from 'react-native';
+import { Dots } from '../../components/dots';
 
 export const Container = styled.View`
   flex: 1;
@@ -30,4 +31,6 @@ export const Title = styled.Text`
   font-size: ${RFValue(15)}px;
 `;
 
-export const CarList = styled(FlatList)``;
+export const CarList = styled(FlatList as new () => FlatList<Dots>).attrs({
+  contentContainerStyle: { paddingHorizontal: 16, paddingVertical: 21 },
+})``;
