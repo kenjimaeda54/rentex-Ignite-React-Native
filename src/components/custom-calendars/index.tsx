@@ -1,53 +1,44 @@
 import React from 'react';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
+import {
+  Calendar,
+  LocaleConfig,
+  DateCallbackHandler,
+} from 'react-native-calendars';
 import { Container } from './styles';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
+import { ptBr } from './local-config';
+import { GenerateInterval } from './generate-interval';
 
-LocaleConfig.locales['pt-br'] = {
-  monthNames: [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro',
-  ],
-  monthNamesShort: [
-    'Ja',
-    'Fev',
-    'Marc',
-    'Abr',
-    'Mai',
-    'Junh',
-    'Jul',
-    'Ago',
-    'Set',
-    'Out',
-    'Nove',
-    'Dez',
-  ],
-  dayNames: [
-    'domingo',
-    'segunda',
-    'terçã',
-    'quarta',
-    'quinta',
-    'sexta',
-    'sábado',
-  ],
-  dayNamesShort: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
-  today: 'Hoje',
-};
+LocaleConfig.locales['pt-br'] = ptBr;
 LocaleConfig.defaultLocale = 'pt-br';
 
-export function CustomCalendar(): JSX.Element {
+interface MarkerDatesProps {
+  [date: string]: {
+    textColor: string;
+    color: string;
+    disabled?: boolean;
+    disabledTouchEvent?: boolean;
+  };
+}
+
+interface DayProps {
+  day: number;
+  month: number;
+  year: number;
+  timestamp: number;
+  dateString: string;
+}
+
+interface CalendarProps {
+  markedDates: MarkerDatesProps;
+  onDayPress: DateCallbackHandler;
+}
+
+function CustomCalendar({
+  markedDates,
+  onDayPress,
+}: CalendarProps): JSX.Element {
   const { colors, fonts } = useTheme();
   return (
     <Container>
@@ -75,9 +66,21 @@ export function CustomCalendar(): JSX.Element {
           textDayFontSize: 15,
           textDayFontFamily: fonts.inter_400,
         }}
+        //dia 1 e para calendário iniciar em segunda,esta assim no design do figma
         firstDay={1}
         minDate={new Date()}
+        markedDates={markedDates} //isto e um array correspondente ao marKingType
+        markingType="period"
+        onDayPress={onDayPress} //dia selecionado
       />
     </Container>
   );
 }
+
+export {
+  DayProps,
+  CalendarProps,
+  CustomCalendar,
+  MarkerDatesProps,
+  GenerateInterval,
+};

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BackButton } from '../../components/back-button';
 import { useTheme } from 'styled-components/native';
 import { Button } from '../../components/button';
 import { StatusBar } from 'react-native';
-import { CustomCalendar } from '../../components/custom-calendars';
+import {
+  CustomCalendar,
+  DayProps,
+  GenerateInterval,
+  MarkerDatesProps,
+} from '../../components/custom-calendars';
 import { useNavigation } from '@react-navigation/native';
 import Arrow from '../../assets/arrow.svg';
 import {
@@ -22,10 +27,33 @@ import {
 export function Scheduling(): JSX.Element {
   const { colors } = useTheme();
   const navigation = useNavigation();
+  const [lastDateSelected, setLastDateSelect] = useState<DayProps>(
+    {} as DayProps,
+  );
+  const [markDate, setMarkDate] = useState<MarkerDatesProps>(
+    {} as MarkerDatesProps,
+  );
 
   function handleSchedulingDetails() {
     navigation.navigate('SchedulingDetails');
   }
+
+  function handleChangeDate(date: DayProps) {
+    //timestamp representa a data em si,aqui estou verificando se nao possui uma data,
+    let start = !lastDateSelected.timestamp ? date : lastDateSelected;
+    let end = date;
+    //No if vou verificar se start possui numero maior que end,porque pode ocorrer
+    //do usuário primeiro clicar em uma data maior e depois clicar em um data menor.
+    //Esperado e o usuário clicar na data inicial menor  e depois a  data final,
+    if (start.timestamp > end.timestamp) {
+      start = end;
+      end = start;
+    }
+    setLastDateSelect(end);
+    const interval = GenerateInterval(start, end);
+    setMarkDate(interval);
+  }
+
   return (
     <Container>
       <StatusBar
@@ -55,7 +83,7 @@ export function Scheduling(): JSX.Element {
         </ViewContainerDate>
       </Header>
       <Content>
-        <CustomCalendar />
+        <CustomCalendar markedDates={markDate} onDayPress={handleChangeDate} />
       </Content>
       <Footer>
         <Button description="Confirmar" onPress={handleSchedulingDetails} />
