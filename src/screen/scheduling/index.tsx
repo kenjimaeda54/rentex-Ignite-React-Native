@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { BackButton } from '../../components/back-button';
 import { useTheme } from 'styled-components/native';
 import { Button } from '../../components/button';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
+import { addDays, format } from 'date-fns';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Dots } from '../../components/dots';
+import Arrow from '../../assets/arrow.svg';
 import {
   CustomCalendar,
   DayProps,
-  GenerateInterval,
+  getIntervalDays,
   MarkerDatesProps,
 } from '../../components/custom-calendars';
-import { useNavigation } from '@react-navigation/native';
-import Arrow from '../../assets/arrow.svg';
 import {
   Container,
   Header,
@@ -24,34 +26,65 @@ import {
   Footer,
 } from './style';
 
+interface RentalPeriodProps {
+  startDayFormatted: string;
+  endDayFormatted: string;
+}
+
+interface RoutesProps {
+  car: Dots;
+}
+
 export function Scheduling(): JSX.Element {
   const { colors } = useTheme();
   const navigation = useNavigation();
+  const { car } = useRoute().params as RoutesProps;
   const [lastDateSelected, setLastDateSelect] = useState<DayProps>(
     {} as DayProps,
   );
   const [markDate, setMarkDate] = useState<MarkerDatesProps>(
     {} as MarkerDatesProps,
   );
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodProps>(
+    {} as RentalPeriodProps,
+  );
 
   function handleSchedulingDetails() {
-    navigation.navigate('SchedulingDetails');
+    if (!rentalPeriod.startDayFormatted || !rentalPeriod.endDayFormatted) {
+      return Alert.alert('Precisa selecionar o período para agendar ');
+    }
+    //preciso passar chaves para objeto via parâmetro,
+    //car:car, date" Objet.Key()
+    navigation.navigate('SchedulingDetails', {
+      car,
+      date: Object.keys(markDate),
+    });
   }
 
   function handleChangeDate(date: DayProps) {
-    //timestamp representa a data em si,aqui estou verificando se nao possui uma data,
     let start = !lastDateSelected.timestamp ? date : lastDateSelected;
+    //aqui garanto que sempre vai haver uma unica data clicado no meu estado,
+    //esta data sempre sera o inicio dela,porque se nao houver data meu estado vai ser date
+    // se houver sera o próprio estado
     let end = date;
-    //No if vou verificar se start possui numero maior que end,porque pode ocorrer
-    //do usuário primeiro clicar em uma data maior e depois clicar em um data menor.
-    //Esperado e o usuário clicar na data inicial menor  e depois a  data final,
     if (start.timestamp > end.timestamp) {
       start = end;
       end = start;
     }
     setLastDateSelect(end);
-    const interval = GenerateInterval(start, end);
+    //função acima so estou tratando o primeiro dia clicado,sempre priorizando a data menor
+    const interval = getIntervalDays(start, end);
     setMarkDate(interval);
+    const startDay = Object.keys(interval)[0];
+    const enDay = Object.keys(interval)[Object.keys(interval).length - 1]; //pegar todos objetos com chave final
+    setRentalPeriod({
+      startDayFormatted: format(addDays(new Date(startDay), 1), 'dd/MM/yy'),
+      endDayFormatted: format(addDays(new Date(enDay), 1), 'dd/MM/yy'),
+    });
+  }
+
+  function handleGoBack() {
+    navigation.goBack();
   }
 
   return (
@@ -62,7 +95,10 @@ export function Scheduling(): JSX.Element {
         barStyle="light-content"
       />
       <Header>
-        <BackButton colorProps={colors.background_primary} />
+        <BackButton
+          onPress={handleGoBack}
+          colorProps={colors.background_primary}
+        />
         <Title>
           Escolha uma{'\n'}
           data de início e {'\n'}
@@ -71,19 +107,30 @@ export function Scheduling(): JSX.Element {
         <ViewContainerDate>
           <ViewDateSelected>
             <TextTitle>De</TextTitle>
-            <TextDate isDate={true}> 18/06/2021 </TextDate>
+            {/*com !! determino que meu conteúdo vai ser um estado logico ou seja. 
+            quando houver conteúdo vai ser true,quando nao houver vai ser false */}
+            <TextDate isDate={!!rentalPeriod.startDayFormatted}>
+              {rentalPeriod.startDayFormatted}
+            </TextDate>
           </ViewDateSelected>
           <ViewIcon>
             <Arrow height={10} width={48} />
           </ViewIcon>
           <ViewDateSelected>
             <TextTitle>Ate</TextTitle>
-            <TextDate isDate={false}> </TextDate>
+            <TextDate isDate={!!rentalPeriod.endDayFormatted}>
+              {rentalPeriod.endDayFormatted}
+            </TextDate>
           </ViewDateSelected>
         </ViewContainerDate>
       </Header>
       <Content>
-        <CustomCalendar markedDates={markDate} onDayPress={handleChangeDate} />
+        <CustomCalendar
+          markedDates={markDate}
+          onDayPress={handleChangeDate}
+          // função onDayPress  ja recebe um date ao clicar no calendário,então nao precisou
+          //informar na função
+        />
       </Content>
       <Footer>
         <Button description="Confirmar" onPress={handleSchedulingDetails} />

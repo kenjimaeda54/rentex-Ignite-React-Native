@@ -34,7 +34,7 @@ export function CarDetails(): JSX.Element {
   const { car } = useRoute().params as RoutesProps;
 
   function handleScheduling() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', { car });
   }
 
   function handleGoBack() {

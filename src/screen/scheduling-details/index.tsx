@@ -46,10 +46,14 @@ export function SchedulingDetails(): JSX.Element {
   function handleSchedulingComplete() {
     navigation.navigate('SchedulingComplete');
   }
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton onPress={handleGoBack} />
         <ViewSlider />
       </Header>
       <CardSliderImg>

@@ -8,7 +8,7 @@ import { Container } from './styles';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 import { ptBr } from './local-config';
-import { GenerateInterval } from './generate-interval';
+import { getIntervalDays } from './generate-interval';
 
 LocaleConfig.locales['pt-br'] = ptBr;
 LocaleConfig.defaultLocale = 'pt-br';
@@ -82,5 +82,5 @@ export {
   CalendarProps,
   CustomCalendar,
   MarkerDatesProps,
-  GenerateInterval,
+  getIntervalDays,
 };
