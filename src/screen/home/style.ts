@@ -3,6 +3,7 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { FlatList } from 'react-native';
 import { Dots } from '../../components/dots';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -34,3 +35,15 @@ export const Title = styled.Text`
 export const CarList = styled(FlatList as new () => FlatList<Dots>).attrs({
   contentContainerStyle: { paddingHorizontal: 16, paddingVertical: 21 },
 })``;
+
+export const CarIconFooter = styled(RectButton)`
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: ${({ theme }) => theme.colors.main};
+  position: absolute;
+  bottom: 8px;
+  right: 22px;
+`;
