@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BackButton } from '../../components/back-button';
 import { useTheme } from 'styled-components/native';
 import { Button } from '../../components/button';
-import { Alert, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { addDays, format } from 'date-fns';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Dots } from '../../components/dots';
@@ -50,9 +50,6 @@ export function Scheduling(): JSX.Element {
   );
 
   function handleSchedulingDetails() {
-    if (!rentalPeriod.startDayFormatted || !rentalPeriod.endDayFormatted) {
-      return Alert.alert('Precisa selecionar o período para agendar ');
-    }
     //preciso passar chaves para objeto via parâmetro,
     //car:car, date" Objet.Key()
     navigation.navigate('SchedulingDetails', {
@@ -133,7 +130,12 @@ export function Scheduling(): JSX.Element {
         />
       </Content>
       <Footer>
-        <Button description="Confirmar" onPress={handleSchedulingDetails} />
+        <Button
+          description="Confirmar"
+          enabled={!!rentalPeriod.startDayFormatted}
+          onPress={handleSchedulingDetails}
+          style={{ opacity: rentalPeriod.startDayFormatted ? 1 : 0.3 }}
+        />
       </Footer>
     </Container>
   );

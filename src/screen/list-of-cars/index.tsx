@@ -1,5 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { StatusBar } from 'react-native';
+import { userId } from '../scheduling-details';
+import { useTheme } from 'styled-components';
+import { Dots } from '../../components/dots';
+import { api } from '../../services';
+import { BackButton } from '../../components/back-button';
+import { useNavigation } from '@react-navigation/native';
+import { FlatList } from 'react-native-gesture-handler';
+import { Carr } from '../../components/carr';
+import { Loading } from '../../components/loading';
+import { AntDesign } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Container,
   Header,
@@ -9,24 +20,25 @@ import {
   AppointmentsTitle,
   AppointmentsQuantity,
   Content,
+  WrapperCar,
+  PeriodTex,
+  ViewDate,
+  DateTitle,
 } from './style';
-import { userId } from '../scheduling-details';
-import { useTheme } from 'styled-components';
-import { Dots } from '../../components/dots';
-import { api } from '../../services';
-import { BackButton } from '../../components/back-button';
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FlatList } from 'react-native-gesture-handler';
-import { Carr } from '../../components/carr';
-import { Loading } from '../../components/loading';
 
-interface FecthCar {
-  car: Dots[];
+interface DataProps {
+  car: Dots;
+  startDate: string;
+  endDate: string;
+  carUserId: string;
+}
+
+interface DetailsCarProps {
+  carByUser: DataProps[];
 }
 
 export function ListOfCars(): JSX.Element {
-  const [detailsCar, setDetailsCar] = useState<Dots[]>([]);
+  const [detailsCar, setDetailsCar] = useState<DataProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { colors } = useTheme();
   const navigation = useNavigation();
@@ -37,9 +49,21 @@ export function ListOfCars(): JSX.Element {
       const stringId = JSON.parse(getId!);
       if (stringId) {
         const response = await api.get(`schedules_byuser/?id=${stringId}`);
-        const getCar: FecthCar[] = response.data;
-        const [data] = getCar.map((item) => item.car);
-        setDetailsCar(data);
+        const getCar: DetailsCarProps[] = response.data;
+        const [datas] = getCar.map((item) => item.carByUser);
+        const rentalPeriod = datas.map((item) => {
+          const car = item.car;
+          const startDate = item.startDate;
+          const endDate = item.endDate;
+          const carUserId = item.carUserId;
+          return {
+            car,
+            startDate,
+            endDate,
+            carUserId,
+          };
+        });
+        setDetailsCar(rentalPeriod);
         setIsLoading(false);
       }
     } catch (error) {
@@ -72,21 +96,42 @@ export function ListOfCars(): JSX.Element {
       <Content>
         <Appointments>
           <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-          <AppointmentsQuantity>2</AppointmentsQuantity>
+          <AppointmentsQuantity>{detailsCar.length}</AppointmentsQuantity>
         </Appointments>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <FlatList
-            data={detailsCar}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <Carr data={item} />}
-            contentContainerStyle={{
-              paddingVertical: 29,
-            }}
-          />
-        )}
       </Content>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={detailsCar}
+          keyExtractor={(item) => item.carUserId}
+          renderItem={({ item }) => {
+            return (
+              <Fragment>
+                <Carr data={item.car} style={{ marginTop: 29 }} />
+                <WrapperCar>
+                  <PeriodTex>Período</PeriodTex>
+                  <ViewDate>
+                    <DateTitle>{item.startDate}</DateTitle>
+                    <AntDesign
+                      name="arrowright"
+                      color={colors.text_detail}
+                      size={14}
+                      style={{ marginHorizontal: 10 }}
+                    />
+
+                    <DateTitle>{item.endDate}</DateTitle>
+                  </ViewDate>
+                </WrapperCar>
+              </Fragment>
+            );
+          }}
+          contentContainerStyle={{
+            paddingBottom: 50,
+            paddingHorizontal: 16,
+          }}
+        />
+      )}
     </Container>
   );
 }

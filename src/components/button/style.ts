@@ -21,3 +21,9 @@ export const Description = styled.Text`
   color: ${({ theme }) => theme.colors.background_secondary};
   text-align: center;
 `;
+
+export const FooterLoading = styled.View`
+  padding: 9px 0;
+  justify-content: center;
+  align-items: center;
+`;

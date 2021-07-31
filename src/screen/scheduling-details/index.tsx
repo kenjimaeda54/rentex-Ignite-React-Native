@@ -59,8 +59,10 @@ export function SchedulingDetails(): JSX.Element {
   const [dateInterval, setDateInterval] = useState<DatesInterval>(
     {} as DatesInterval,
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSchedulingComplete() {
+    setIsLoading(true);
     //quando usuário algar carro, preciso atualizar na minha api.
     //Usando id do carro selecionado ,faco referencia ao id no schedules_bycars
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
@@ -82,29 +84,38 @@ export function SchedulingDetails(): JSX.Element {
       .then(async () => {
         const getUserId = await AsyncStorage.getItem(userId);
         const parseUserId = getUserId ? JSON.parse(getUserId!) : '';
+        const carUserId = uuidV4();
+        const rentalsAllPeriod = {
+          car,
+          carUserId,
+          startDate: format(addDays(new Date(date[0]), 1), 'dd/MM/yy'),
+          endDate: format(
+            addDays(new Date(date[date.length - 1]), 1),
+            'dd/MM/yy',
+          ),
+        };
+
         if (parseUserId === '') {
           const idUser = uuidV4();
           AsyncStorage.setItem(userId, JSON.stringify(idUser));
-          const cars = [car];
           await api.post('/schedules_byuser', {
-            car: cars,
+            carByUser: [rentalsAllPeriod],
             user_id: idUser,
             id: idUser,
           });
           navigation.navigate('SchedulingComplete');
         } else {
           const getCars = await api.get(`/schedules_byuser/${parseUserId}`);
-          console.log(getCars.data.car);
-          const allCars = [...getCars.data.car, car];
+          const allRentalUser = [...getCars.data.carByUser, rentalsAllPeriod];
           await api.put(`/schedules_byuser/${parseUserId}`, {
-            car: allCars,
+            carByUser: allRentalUser,
             user_id: parseUserId,
             id: parseUserId,
           });
           navigation.navigate('SchedulingComplete');
         }
       })
-      .catch(() => Alert.alert('Nao foi salvar as informações'));
+      .catch((error) => Alert.alert(error));
   }
 
   function handleGoBack() {
@@ -182,6 +193,9 @@ export function SchedulingDetails(): JSX.Element {
           description="Alugar agora"
           color={colors.success}
           onPress={handleSchedulingComplete}
+          enabled={!isLoading}
+          loading={isLoading}
+          style={{ opacity: isLoading ? 0.3 : 1 }}
         />
       </Footer>
     </Container>

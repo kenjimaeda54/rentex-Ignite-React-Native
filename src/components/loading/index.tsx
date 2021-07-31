@@ -1,12 +1,17 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, ActivityIndicatorIOSProps } from 'react-native';
 import { useTheme } from 'styled-components';
 
-export function Loading(): JSX.Element {
+interface LoadingProps extends ActivityIndicatorIOSProps {
+  color?: string;
+}
+
+export function Loading({ color, ...rest }: LoadingProps): JSX.Element {
   const { colors } = useTheme();
   return (
     <ActivityIndicator
-      color={colors.success}
+      {...rest}
+      color={color ? color : colors.success}
       size="large"
       style={{
         flex: 1,
