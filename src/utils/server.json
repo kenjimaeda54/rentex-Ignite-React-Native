@@ -567,7 +567,20 @@
         "2021-08-01",
         "2021-08-02",
         "2021-08-03",
-        "2021-08-04"
+        "2021-08-04",
+        "2021-11-17",
+        "2021-11-18",
+        "2021-11-19",
+        "2021-11-20",
+        "2021-11-21",
+        "2021-11-22",
+        "2021-11-23",
+        "2021-11-24",
+        "2021-11-25",
+        "2021-11-26",
+        "2021-11-27",
+        "2021-11-28",
+        "2021-11-29"
       ]
     },
     {
@@ -829,6 +842,11 @@
         "2021-08-04",
         "2021-08-05",
         "2021-08-06",
+        "2021-08-07",
+        "2021-08-08",
+        "2021-08-09",
+        "2021-08-10",
+        "2021-08-11",
         "2021-08-07",
         "2021-08-08",
         "2021-08-09",
@@ -1247,6 +1265,101 @@
           "carUserId": "435563f6-c9dd-46e1-a05d-2c4c37fbcc1c",
           "startDate": "10/08/21",
           "endDate": "15/08/21"
+        },
+        {
+          "car": {
+            "id": "52930821-cbea-4b05-9f45-7c02b1bb0d8c",
+            "brand": "Chevrolet",
+            "name": "Corvette Z06",
+            "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
+            "rent": {
+              "period": "Ao dia",
+              "price": 620
+            },
+            "fuel_type": "gasoline_motor",
+            "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
+            "accessories": [
+              {
+                "type": "speed",
+                "name": "330km/h"
+              },
+              {
+                "type": "acceleration",
+                "name": "6.2s"
+              },
+              {
+                "type": "turning_diameter",
+                "name": "900 HP"
+              },
+              {
+                "type": "gasoline_motor",
+                "name": "Gasoline"
+              },
+              {
+                "type": "exchange",
+                "name": "Auto"
+              },
+              {
+                "type": "seats",
+                "name": "2 pessoas"
+              }
+            ],
+            "photos": [
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/6.png",
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/7.png",
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/8.png"
+            ]
+          },
+          "carUserId": "e6bad058-d9fc-4489-8da2-77fb6dbff2d9",
+          "startDate": "07/08/21",
+          "endDate": "11/08/21"
+        },
+        {
+          "car": {
+            "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
+            "brand": "Porsche",
+            "name": "Panamera",
+            "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
+            "rent": {
+              "period": "Ao dia",
+              "price": 340
+            },
+            "fuel_type": "gasoline_motor",
+            "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
+            "accessories": [
+              {
+                "type": "speed",
+                "name": "315km/h"
+              },
+              {
+                "type": "acceleration",
+                "name": "2.9s"
+              },
+              {
+                "type": "turning_diameter",
+                "name": "700 HP"
+              },
+              {
+                "type": "gasoline_motor",
+                "name": "Gasoline"
+              },
+              {
+                "type": "exchange",
+                "name": "Auto"
+              },
+              {
+                "type": "seats",
+                "name": "4 pessoas"
+              }
+            ],
+            "photos": [
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/4.png",
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/5.png"
+            ]
+          },
+          "carUserId": "35daafba-1828-4a4f-bc77-57cb9ecc2758",
+          "startDate": "17/11/21",
+          "endDate": "29/11/21"
         }
       ],
       "user_id": "01a111ab-c6c4-4ac1-aee2-5a33d85d9618",

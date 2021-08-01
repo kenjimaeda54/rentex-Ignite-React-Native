@@ -7,7 +7,7 @@ import Logo from '../../assets/logo.svg';
 import { Carr } from '../../components/carr';
 import { api } from '../../services';
 import { Dots } from '../../components/dots';
-import { Loading } from '../../components/loading';
+import { LoadingLottie } from '../../components/loading-lottie';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import {
@@ -17,6 +17,7 @@ import {
   Title,
   CarList,
   CarIconFooter,
+  ViewLoading,
 } from './style';
 
 export function HomeScreen(): JSX.Element {
@@ -56,11 +57,13 @@ export function HomeScreen(): JSX.Element {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(112)} height={RFValue(12)} />
-          <Title>Total de 12 carros</Title>
+          <Title>Total de {fetchCars.length} carros</Title>
         </HeaderContent>
       </Header>
       {loading ? (
-        <Loading />
+        <ViewLoading>
+          <LoadingLottie />
+        </ViewLoading>
       ) : (
         <CarList
           data={fetchCars}

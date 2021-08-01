@@ -11,7 +11,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes(): JSX.Element {
   return (
-    <Navigator headerMode="none">
+    <Navigator headerMode="none" initialRouteName="HomeScreen">
       <Screen name="HomeScreen" component={HomeScreen} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />

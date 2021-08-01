@@ -8,7 +8,6 @@ import { BackButton } from '../../components/back-button';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Carr } from '../../components/carr';
-import { Loading } from '../../components/loading';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -24,7 +23,9 @@ import {
   PeriodTex,
   ViewDate,
   DateTitle,
+  ViewLoading,
 } from './style';
+import { LoadingLottie } from '../../components/loading-lottie';
 
 interface DataProps {
   car: Dots;
@@ -100,7 +101,9 @@ export function ListOfCars(): JSX.Element {
         </Appointments>
       </Content>
       {isLoading ? (
-        <Loading />
+        <ViewLoading>
+          <LoadingLottie />
+        </ViewLoading>
       ) : (
         <FlatList
           data={detailsCar}

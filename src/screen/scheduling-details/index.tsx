@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BackButton } from '../../components/back-button';
 import { CarSlider } from '../../components/car-slider';
-import { ViewSlider } from '../../components/view-slider';
 import { Accessory } from '../../components/accessory';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
@@ -134,10 +133,9 @@ export function SchedulingDetails(): JSX.Element {
     <Container>
       <Header>
         <BackButton onPress={handleGoBack} />
-        <ViewSlider />
       </Header>
       <CardSliderImg>
-        <CarSlider listImg={[car.photos[0]]} />
+        <CarSlider listImg={car.photos} />
       </CardSliderImg>
       <Content
         contentContainerStyle={{ paddingHorizontal: 24, alignItems: 'center' }}

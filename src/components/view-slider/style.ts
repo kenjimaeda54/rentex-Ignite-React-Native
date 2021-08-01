@@ -5,6 +5,9 @@ interface ViewSelectedProps {
 }
 
 export const Container = styled.View`
+  position: absolute;
+  top: -50px;
+  right: 24px;
   flex-direction: row;
 `;
 

@@ -20,7 +20,6 @@ export const CardSliderImg = styled.View`
   width: 100%;
   margin-top: 32px;
   margin-bottom: 52px;
-  padding: 0 48px;
 `;
 
 export const Content = styled.ScrollView.attrs({

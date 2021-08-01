@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
@@ -88,4 +89,11 @@ export const DateTitle = styled.Text`
   font-weight: 400;
   font-size: ${RFValue(13)}px;
   line-height: ${RFValue(15)}px;
+`;
+
+export const ViewLoading = styled.View`
+  width: ${Dimensions.get('window').width}px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;

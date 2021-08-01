@@ -1,5 +1,7 @@
 package com.rentx;
 
+import com.swmansion.reanimated.ReanimatedJSIModulePackage;
+import com.facebook.react.bridge.JSIModulePackage;
 import android.app.Application;
 import android.content.Context;
 import android.net.Uri;
@@ -82,6 +84,10 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
   }
+   @Override
+      protected JSIModulePackage getJSIModulePackage() {
+        return new ReanimatedJSIModulePackage(); // <- add
+      }
 
   @Override
   public void onCreate() {

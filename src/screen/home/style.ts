@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import { Dots } from '../../components/dots';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -46,4 +46,11 @@ export const CarIconFooter = styled(RectButton)`
   position: absolute;
   bottom: 8px;
   right: 22px;
+`;
+
+export const ViewLoading = styled.View`
+  width: ${Dimensions.get('window').width}px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
