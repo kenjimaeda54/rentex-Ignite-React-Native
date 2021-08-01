@@ -71,10 +71,6 @@ export function SchedulingDetails(): JSX.Element {
       //.data e do response do axios,ele sempre retorna um data
       ...date,
     ];
-    //método put e para atualizar  recurso da api,por isso preciso de um parâmetro.
-    //Este parâmetro normalmente e um id que faz referencia ao  recurso quero atualizar.
-    // Aqui vamos adicionar na api do carro, novos alugueis,selecionado pelo usuário.
-    //Método post adiciono novo recurso,nao precisa de parâmetro
     api
       .put(`/schedules_bycars/${car.id}`, {
         id: car.id,

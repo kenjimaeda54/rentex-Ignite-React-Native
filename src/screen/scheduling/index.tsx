@@ -104,8 +104,6 @@ export function Scheduling(): JSX.Element {
         <ViewContainerDate>
           <ViewDateSelected>
             <TextTitle>De</TextTitle>
-            {/*com !! determino que meu conteúdo vai ser um estado logico ou seja. 
-            quando houver conteúdo vai ser true,quando nao houver vai ser false */}
             <TextDate isDate={!!rentalPeriod.startDayFormatted}>
               {rentalPeriod.startDayFormatted}
             </TextDate>

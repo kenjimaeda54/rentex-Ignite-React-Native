@@ -73,9 +73,6 @@ export function CarDetails(): JSX.Element {
         </Accessories>
         <AboutText>{car.about}</AboutText>
       </Content>
-      {/*content e uma scroll view caso o botão esteja la dentro,
-      vai acompanhar o scroll,melhor maneira de resolver isso e colocar
-      botão fora, assim sempre vai ficar visível */}
       <Footer>
         <Button
           description="Escolha período do aluguel"
