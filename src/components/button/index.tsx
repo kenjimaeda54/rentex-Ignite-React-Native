@@ -8,11 +8,13 @@ interface ButtonProps extends RectButtonProps {
   description: string;
   color?: string;
   loading?: boolean;
+  colorText?: string;
 }
 
 export function Button({
   description,
   color,
+  colorText,
   loading = false,
   ...rest
 }: ButtonProps): JSX.Element {
@@ -24,7 +26,7 @@ export function Button({
           <Loading color={colors.main} />
         </FooterLoading>
       ) : (
-        <Description> {description}</Description>
+        <Description color={colorText}> {description}</Description>
       )}
     </ButtonContainer>
   );

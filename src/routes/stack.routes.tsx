@@ -6,12 +6,14 @@ import { SchedulingDetails } from '../screen/scheduling-details';
 import { SchedulingComplete } from '../screen/scheduling-complete';
 import { CarDetails } from '../screen/car-details';
 import { ListOfCars } from '../screen/list-of-cars';
+import { SingIn } from '../screen/sing-in';
 
 const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes(): JSX.Element {
   return (
-    <Navigator headerMode="none" initialRouteName="HomeScreen">
+    <Navigator headerMode="none" initialRouteName="SingIn">
+      <Screen name="SingIn" component={SingIn} />
       <Screen name="HomeScreen" component={HomeScreen} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />

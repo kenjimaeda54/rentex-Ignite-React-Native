@@ -6,6 +6,10 @@ interface ButtonProps {
   color?: string;
 }
 
+interface DescriptionProps {
+  color?: string;
+}
+
 export const ButtonContainer = styled(RectButton)<ButtonProps>`
   background-color: ${({ color, theme }) =>
     color ? color : theme.colors.main};
@@ -13,12 +17,13 @@ export const ButtonContainer = styled(RectButton)<ButtonProps>`
   width: 100%;
 `;
 
-export const Description = styled.Text`
+export const Description = styled.Text<DescriptionProps>`
   font-family: ${({ theme }) => theme.fonts.inter_500};
   font-weight: 500;
   font-size: ${RFValue(15)}px;
   line-height: ${RFValue(18)}px;
-  color: ${({ theme }) => theme.colors.background_secondary};
+  color: ${({ color, theme }) =>
+    color ? color : theme.colors.background_secondary};
   text-align: center;
 `;
 
