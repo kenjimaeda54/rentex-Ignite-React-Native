@@ -24,20 +24,17 @@ export function SingIn(): JSX.Element {
   const { colors } = useTheme();
   const [email, setEmail] = useState('');
   const [passWord, setPassWord] = useState('');
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   async function handleSingIn() {
     try {
-      const numberPassword = Number(passWord);
       const schema = Yup.object().shape({
         email: Yup.string()
           .required('E-mail e um campo obrigatório')
           .email('Por favor coloque um e-mail valido'),
-        numberPassword: Yup.number()
-          .required('Senha e campo obrigatório')
-          .positive('Senha precisa ser positiva'),
+        passWord: Yup.string().required('Senha e campo obrigatório'),
       });
-      await schema.validate({ email, numberPassword });
+      await schema.validate({ email, passWord });
       alert('passou');
     } catch (error) {
       //preciso tratar a possibilidade de gerar um erro de excussão da api e também outro erro que e retornado,
@@ -53,7 +50,7 @@ export function SingIn(): JSX.Element {
   }
 
   function handleSingUp() {
-    navigation.navigate('SingUpFirstSteeps');
+    navigate('SingUpFirstSteeps');
   }
 
   return (

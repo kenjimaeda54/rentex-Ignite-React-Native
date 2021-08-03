@@ -580,7 +580,12 @@
         "2021-11-26",
         "2021-11-27",
         "2021-11-28",
-        "2021-11-29"
+        "2021-11-29",
+        "2021-09-01",
+        "2021-09-02",
+        "2021-09-03",
+        "2021-09-04",
+        "2021-09-05"
       ]
     },
     {
@@ -1413,6 +1418,53 @@
           "carUserId": "7a617364-d906-495c-be1e-8eb6dd840af9",
           "startDate": "18/08/21",
           "endDate": "22/08/21"
+        },
+        {
+          "car": {
+            "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
+            "brand": "Porsche",
+            "name": "Panamera",
+            "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
+            "rent": {
+              "period": "Ao dia",
+              "price": 340
+            },
+            "fuel_type": "gasoline_motor",
+            "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
+            "accessories": [
+              {
+                "type": "speed",
+                "name": "315km/h"
+              },
+              {
+                "type": "acceleration",
+                "name": "2.9s"
+              },
+              {
+                "type": "turning_diameter",
+                "name": "700 HP"
+              },
+              {
+                "type": "gasoline_motor",
+                "name": "Gasoline"
+              },
+              {
+                "type": "exchange",
+                "name": "Auto"
+              },
+              {
+                "type": "seats",
+                "name": "4 pessoas"
+              }
+            ],
+            "photos": [
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/4.png",
+              "https://storage.googleapis.com/golden-wind/ignite/react-native/images/5.png"
+            ]
+          },
+          "carUserId": "96fcfd59-0946-4668-990a-9ca7c2fefaa0",
+          "startDate": "01/09/21",
+          "endDate": "05/09/21"
         }
       ],
       "user_id": "01a111ab-c6c4-4ac1-aee2-5a33d85d9618",

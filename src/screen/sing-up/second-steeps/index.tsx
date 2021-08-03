@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components';
 import { Bullet } from '../../../components/bullet';
 import { PassWordInput } from '../../../components/password-input';
 import { Button } from '../../../components/button';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import {
   KeyboardAvoidingView,
   Keyboard,
@@ -21,7 +22,7 @@ import {
   TitleForm,
   Footer,
 } from './style';
-import { useRoute } from '@react-navigation/native';
+import { api } from '../../../services';
 
 interface ParamsProps {
   user: {
@@ -35,17 +36,37 @@ export function SingUpSecondSteeps(): JSX.Element {
   const { colors } = useTheme();
   const [passWord, setPassWord] = useState('');
   const [passWordConfirm, setPassWordConfirm] = useState('');
+  const { navigate } = useNavigation();
   const { params } = useRoute();
   const { user } = params as ParamsProps;
-  console.log(user);
 
-  function handleConfirmPassWord() {
+  async function handleConfirmPassWord() {
     if (!passWord || !passWordConfirm) {
       return Alert.alert('Precisa preencher os campos de senha e confirmação');
     }
     if (passWord !== passWordConfirm) {
       return Alert.alert('Senhas precisam ser iguais');
     }
+    //a rotas users precisa ser a mesma sugerida pela api
+    await api
+      .post('/users', {
+        //os campos do objeto precisam ser iguais da api,name,password,driver_license...
+        name: user.name,
+        password: passWord,
+        driver_license: user.cnh,
+        email: user.email,
+      })
+      .then(() => {
+        navigate('Confirmation', {
+          title: 'Conta criada!',
+          description: `Agora você só precisa\nfazer  o login para usar aplicativo`,
+          nextScreen: 'SingIn',
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert('Nao foi possível cadastrar');
+      });
   }
 
   return (

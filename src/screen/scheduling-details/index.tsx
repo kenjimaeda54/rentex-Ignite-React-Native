@@ -107,7 +107,11 @@ export function SchedulingDetails(): JSX.Element {
             user_id: parseUserId,
             id: parseUserId,
           });
-          navigation.navigate('SchedulingComplete');
+          navigation.navigate('Confirmation', {
+            title: 'Carro alugado!',
+            description: `Agora você só precisa ir\naté a concessionária da RENTX`,
+            nextScreen: 'HomeScreen',
+          });
         }
       })
       .catch((error) => Alert.alert(error));
