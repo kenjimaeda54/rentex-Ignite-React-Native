@@ -1,6 +1,7 @@
 import React, { ComponentProps, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { TextInputProps } from 'react-native';
+import { BorderlessButton } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 import { Container, FieldText, IconView } from './style';
 
@@ -9,14 +10,21 @@ interface FieldInputProps extends TextInputProps {
   value?: string;
 }
 
-export default function FieldInput({
+export default function PassWordInput({
   nameIcon,
   value,
   ...props
 }: FieldInputProps): JSX.Element {
   const { colors } = useTheme();
+  const [isInVisible, setIsInVisible] = useState(true);
   const [isFilled, setIsFilled] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+
+  function handleVisiblePassword() {
+    setIsInVisible((prevState) => !prevState);
+    // e possível fazer dessa maneira também setIsInVisible(!isInVisible),
+    //outra maneira e mais intuitiva\
+  }
 
   function handleFocusInput() {
     setIsFocus(true);
@@ -28,10 +36,6 @@ export default function FieldInput({
   }
 
   return (
-    //atenção toda vez que  o pai sofre alteração afeta os filhos
-    //anteriormente havia estado no container,assim esse estado
-    //renderizava a tela duas vezes uma para montar componente e outra
-    //atualizar estado,isso ocorria quebra no componente filho
     <Container>
       <IconView isFocus={isFocus}>
         <Feather
@@ -40,13 +44,24 @@ export default function FieldInput({
           size={20}
         />
       </IconView>
-      {/* refactor esta aqui,foi passado direto para componente nao componente pai */}
       <FieldText
+        // on focus e onblur , sao propriedades do input,onFocus e quando esta dentro do input
+        // e onBlur e quando saiu do input
         onFocus={handleFocusInput}
         onBlur={handleBLurInput}
+        secureTextEntry={isInVisible ? true : false}
         isFocus={isFocus}
         {...props}
       />
+      <BorderlessButton onPress={handleVisiblePassword}>
+        <IconView isFocus={isFocus}>
+          <Feather
+            name={isInVisible ? 'eye-off' : 'eye'}
+            color={colors.text_detail}
+            size={20}
+          />
+        </IconView>
+      </BorderlessButton>
     </Container>
   );
 }

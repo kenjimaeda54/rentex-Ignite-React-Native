@@ -11,6 +11,7 @@ export const Container = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
+  margin: 8px 0px;
 `;
 
 export const IconView = styled.View<Props>`
@@ -23,6 +24,7 @@ export const IconView = styled.View<Props>`
   ${({ isFocus }) =>
     isFocus &&
     css`
+      /* padrão da borda e soldia por isso nao setei */
       border-bottom-width: 2px;
       border-bottom-color: ${({ theme }) => theme.colors.main};
     `}
@@ -44,6 +46,7 @@ export const FieldText = styled(TextInput)<Props>`
   ${({ isFocus }) =>
     isFocus &&
     css`
+      /* padrão da borda e soldia por isso nao setei */
       border-bottom-width: 2px;
       border-bottom-color: ${({ theme }) => theme.colors.main};
     `}
