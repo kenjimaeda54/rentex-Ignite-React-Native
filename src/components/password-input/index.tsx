@@ -10,7 +10,7 @@ interface FieldInputProps extends TextInputProps {
   value?: string;
 }
 
-export default function PassWordInput({
+export function PassWordInput({
   nameIcon,
   value,
   ...props

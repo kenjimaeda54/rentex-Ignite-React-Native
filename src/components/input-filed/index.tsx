@@ -9,7 +9,7 @@ interface FieldInputProps extends TextInputProps {
   value?: string;
 }
 
-export default function FieldInput({
+export function FieldInput({
   nameIcon,
   value,
   ...props

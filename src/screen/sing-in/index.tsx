@@ -8,8 +8,8 @@ import {
 import { useTheme } from 'styled-components';
 import { Button } from '../../components/button';
 import { useNavigation } from '@react-navigation/native';
-import FieldInput from '../../components/input-filed';
-import PassWordInput from '../../components/password-input';
+import { FieldInput } from '../../components/input-filed';
+import { PassWordInput } from '../../components/password-input';
 import * as Yup from 'yup';
 import {
   Container,
@@ -102,7 +102,7 @@ export function SingIn(): JSX.Element {
               description="Criar conta gratuita"
               color={colors.background_secondary}
               loading={false}
-              enabled={false}
+              enabled
               onPress={handleSingUp}
               colorText={colors.text_Dark}
             />

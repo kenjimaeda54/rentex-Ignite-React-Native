@@ -34,6 +34,7 @@ export const FieldText = styled(TextInput)<Props>`
   quebrando assim todo estilo aplicado */
   flex: 1;
   padding: 0 25px;
+  margin: 8px 0;
   background-color: ${({ theme }) => theme.colors.background_secondary};
   font-family: ${({ theme }) => theme.fonts.inter_400};
   color: ${({ theme }) => theme.colors.text_Dark};
