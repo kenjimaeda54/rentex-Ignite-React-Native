@@ -4,7 +4,10 @@ import { ViewSlider } from '../view-slider';
 import { CarImg, ImgWrap } from './style';
 
 interface CarSliderProps {
-  listImg: string[];
+  listImg: {
+    id: string;
+    photo: string;
+  }[];
 }
 
 interface ViewSliderProps {
@@ -31,11 +34,11 @@ export function CarSlider({ listImg }: CarSliderProps): JSX.Element {
       <ViewSlider numberSelected={indexImg} listImg={listImg} />
       <FlatList
         data={listImg}
-        keyExtractor={(key) => key}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           //as vezes colocar uma view em torno auxilia na estilização
           <ImgWrap>
-            <CarImg source={{ uri: item }} resizeMode="contain" />
+            <CarImg source={{ uri: item.photo }} resizeMode="contain" />
           </ImgWrap>
         )}
         horizontal={true}

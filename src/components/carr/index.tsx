@@ -28,8 +28,8 @@ export function Carr({ data, ...rest }: CarrProps): JSX.Element {
         <TextModelCar> {data.name} </TextModelCar>
         <ViewDiary>
           <ContentDiary>
-            <TextDay> {data.rent.period} </TextDay>
-            <TextPrice> R$ {data.rent.price} </TextPrice>
+            <TextDay> {data.period} </TextDay>
+            <TextPrice> R$ {data.price} </TextPrice>
           </ContentDiary>
           <Type>
             <Icon />

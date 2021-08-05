@@ -2,7 +2,10 @@ import React from 'react';
 import { Container, ViewSelected } from './style';
 
 interface listImgProps {
-  listImg: string[];
+  listImg: {
+    id: string;
+    photo: string;
+  }[];
   numberSelected: number;
 }
 
@@ -12,9 +15,9 @@ export function ViewSlider({
 }: listImgProps): JSX.Element {
   return (
     <Container>
-      {listImg.map((__, index) => (
+      {listImg.map((item, index) => (
         <ViewSelected
-          key={String(index)}
+          key={item.id}
           isSelect={numberSelected === index ? true : false}
         />
       ))}

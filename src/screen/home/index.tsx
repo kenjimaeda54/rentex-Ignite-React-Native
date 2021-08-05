@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import Logo from '../../assets/logo.svg';
 import { Carr } from '../../components/carr';

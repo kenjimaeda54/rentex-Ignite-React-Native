@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { useTheme } from 'styled-components';
+import { Button } from '../../components/button';
+import { useNavigation } from '@react-navigation/native';
+import { FieldInput } from '../../components/input-filed';
+import { PassWordInput } from '../../components/password-input';
+import { useAuthContext } from '../../hooks/auth';
+import * as Yup from 'yup';
 import {
   Alert,
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { useTheme } from 'styled-components';
-import { Button } from '../../components/button';
-import { useNavigation } from '@react-navigation/native';
-import { FieldInput } from '../../components/input-filed';
-import { PassWordInput } from '../../components/password-input';
-import * as Yup from 'yup';
 import {
   Container,
   Header,
@@ -23,8 +24,9 @@ import {
 export function SingIn(): JSX.Element {
   const { colors } = useTheme();
   const [email, setEmail] = useState('');
-  const [passWord, setPassWord] = useState('');
+  const [password, setPassWord] = useState('');
   const { navigate } = useNavigation();
+  const { singIn } = useAuthContext();
 
   async function handleSingIn() {
     try {
@@ -32,10 +34,10 @@ export function SingIn(): JSX.Element {
         email: Yup.string()
           .required('E-mail e um campo obrigatório')
           .email('Por favor coloque um e-mail valido'),
-        passWord: Yup.string().required('Senha e campo obrigatório'),
+        password: Yup.string().required('Senha e campo obrigatório'),
       });
-      await schema.validate({ email, passWord });
-      alert('passou');
+      await schema.validate({ email, password });
+      singIn({ email, password });
     } catch (error) {
       //preciso tratar a possibilidade de gerar um erro de excussão da api e também outro erro que e retornado,
       //pelo yup caso nao seja validado meu schema
@@ -80,7 +82,7 @@ export function SingIn(): JSX.Element {
               onChangeText={setEmail}
             />
             <PassWordInput
-              value={passWord}
+              value={password}
               onChangeText={setPassWord}
               nameIcon="lock"
               placeholder="Senha"

@@ -58,8 +58,8 @@ export function CarDetails(): JSX.Element {
             <ModelText>{car.name}</ModelText>
           </ViewDetails>
           <ViewRente>
-            <DayText>{car.rent.period}</DayText>
-            <PriceText>R$ {car.rent.price}</PriceText>
+            <DayText>{car.period}</DayText>
+            <PriceText>R$ {car.price}</PriceText>
           </ViewRente>
         </ViewCarDetails>
         <Accessories>

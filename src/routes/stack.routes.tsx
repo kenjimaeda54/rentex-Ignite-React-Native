@@ -14,7 +14,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes(): JSX.Element {
   return (
-    <Navigator headerMode="none" initialRouteName="SingIn">
+    <Navigator headerMode="none" initialRouteName="HomeScreen">
       <Screen name="SingIn" component={SingIn} />
       <Screen name="SingUpFirstSteeps" component={SingUpFirstSteeps} />
       <Screen name="SingUpSecondSteeps" component={SingUpSecondSteeps} />
