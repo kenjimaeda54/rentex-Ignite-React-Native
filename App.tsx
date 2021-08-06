@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { Routes } from './src/routes/index.routes';
+import { Routes } from './src/routes';
 import AppLoading from 'expo-app-loading';
 import 'react-native-gesture-handler';
 import theme from './src/global/theme';

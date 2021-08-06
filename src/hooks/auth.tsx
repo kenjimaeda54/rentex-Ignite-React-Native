@@ -37,11 +37,14 @@ export default function AuthProvider({
   const [data, setData] = useState<AuthState>({} as AuthState);
 
   async function singIn({ email, password }: SingCredentials) {
-    const { data } = await api.post('/sessions', {
+    const response = await api.post('/sessions', {
       email,
       password,
     });
-    setData(data);
+    const { token, user } = response.data;
+    api.defaults.headers.authorization = `Bearer ${token}`;
+    //authorization e parâmetro do banco de dados e o Bearer e da api
+    setData({ token, user });
   }
 
   return (

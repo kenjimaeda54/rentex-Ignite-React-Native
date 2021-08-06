@@ -74,13 +74,13 @@ export function HomeScreen(): JSX.Element {
           )}
         />
       )}
-      <CarIconFooter onPress={handleListOfCars}>
+      {/* <CarIconFooter onPress={handleListOfCars}>
         <Ionicons
           name="car-sport"
           size={32}
           color={colors.background_secondary}
         />
-      </CarIconFooter>
+      </CarIconFooter> */}
     </Container>
   );
 }
