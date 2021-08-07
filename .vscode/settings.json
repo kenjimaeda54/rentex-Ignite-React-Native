@@ -15,7 +15,9 @@
     "byuser",
     "formt",
     "iphone",
+    "nozbe",
     "quar",
-    "wasm"
+    "wasm",
+    "watermelondb"
   ]
 }

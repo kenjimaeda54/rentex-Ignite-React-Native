@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from 'react';
 import CarSvg from '../assets/car_tab.svg';
 import HomeSvg from '../assets/home.svg';

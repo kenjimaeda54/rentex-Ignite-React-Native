@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from 'styled-components';
 import { Button } from '../../components/button';
 import { useNavigation } from '@react-navigation/native';
@@ -20,6 +20,7 @@ import {
   ViewFooter,
   FormView,
 } from './styles';
+import { dataBase } from '../../database';
 
 export function SingIn(): JSX.Element {
   const { colors } = useTheme();
@@ -54,6 +55,15 @@ export function SingIn(): JSX.Element {
   function handleSingUp() {
     navigate('SingUpFirstSteeps');
   }
+
+  useEffect(() => {
+    async function load() {
+      const userCollection = dataBase.get('users');
+      const users = await userCollection.query().fetch();
+      console.log(users);
+    }
+    load();
+  }, []);
 
   return (
     // KeyboardAvoidingView vai tratar os inputs.Quando input selecionado sobe a tela para
